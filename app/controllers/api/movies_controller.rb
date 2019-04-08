@@ -9,7 +9,7 @@ class Api::MoviesController < ApplicationController
     @movie = Movie.new(
       name: params[:name],
       duration: params[:duration],
-      trailer_url: params[:trailer_url]
+      photo: params[:photo]
       )
 
     if @movie.save
@@ -20,9 +20,15 @@ class Api::MoviesController < ApplicationController
   end
 
   def show
-    contact_id = params[:id]
-    @movie = Movie.find_by(id: contact_id)
+    movie_id = params[:id]
+    @movie = Movie.find_by(id: movie_id)
     render 'show.json.jbuilder'
   end
+
+  def destroy
+    movie = params[:id]
+    @movie = Movie.find_by(id: movie_id)
+  end
+
 
 end
